@@ -1,7 +1,7 @@
 # line-bot-simple-server
 
 LINE Messaging API を利用したシンプルなAPIサーバーです。
-`/send-message` に以下の形式でJSONを `POST` すると友達になっているユーザー全てにメッセージを送ります。
+`/send-message` に以下の形式でJSONを `POST` するとBotと友達になっているユーザー全てにメッセージを送ります。
 
 ```json
 {
@@ -17,7 +17,7 @@ Heroku上で動作させることを想定しています。
 Heroku上で必要な作業は以下の2点のみです。
 
 1. Postgres アドオンをインストール
-2. 環境変数 `CHANNEL_SECRET` （Channel Secret） `CHANNEL_TOKEN` （アクセストークン）を設定
+2. LINE Developersの管理画面から確認できる `Channel Secret` と `アクセストークン` の値をそれぞれ 環境変数 `CHANNEL_SECRET` `CHANNEL_TOKEN` に設定
 
 LINE Developers の設定画面で必要な作業は以下の2点のみです。
 
