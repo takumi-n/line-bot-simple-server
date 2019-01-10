@@ -43,7 +43,9 @@ func main() {
 			return
 		}
 		for _, event := range events {
-			db.Exec(`INSERT INTO destination VALUES ($1)`, event.Source.RoomID)
+			if event.Type == linebot.EventTypeFollow {
+				db.Exec(`INSERT INTO destination VALUES ($1)`, event.Source.UserID)
+			}
 		}
 	})
 
