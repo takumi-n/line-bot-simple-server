@@ -36,9 +36,9 @@ func main() {
 		events, err := bot.ParseRequest(req)
 		if err != nil {
 			if err == linebot.ErrInvalidSignature {
-				w.WriteHeader(400)
+				w.WriteHeader(http.StatusBadRequest)
 			} else {
-				w.WriteHeader(500)
+				w.WriteHeader(http.StatusInternalServerError)
 			}
 			return
 		}
@@ -60,6 +60,7 @@ func main() {
 		var reqJSON sendMessageRequest
 		if err := json.NewDecoder(req.Body).Decode(&reqJSON); err != nil {
 			log.Println(err)
+			w.WriteHeader(http.StatusBadRequest)
 			return
 		}
 
@@ -68,6 +69,7 @@ func main() {
 		rows, err := db.Query(`SELECT id FROM destination`)
 		if err != nil {
 			log.Println(err)
+			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
 
