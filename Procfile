@@ -1,1 +1,1 @@
-web: server
+web: line-bot-simple-server
