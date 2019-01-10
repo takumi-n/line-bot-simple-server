@@ -82,9 +82,11 @@ func main() {
 				continue
 			}
 
-			log.Printf("UserID: %s にメッセージ %s を送ります\n", id, message)
-
-			bot.PushMessage(id, linebot.NewTextMessage(message))
+			_, err := bot.PushMessage(id, linebot.NewTextMessage(message)).Do()
+			if err != nil {
+				log.Println(err)
+				continue
+			}
 		}
 	})
 
